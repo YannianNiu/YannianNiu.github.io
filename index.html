@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yannian Niu</title>
+<meta name="description" content="Yannian Niu — PhD student in Computer Science and Engineering at the University of Connecticut.">
+<link rel="icon" href="images/profile.png">
+
+<!-- Open Graph：别人在微信/Slack/Twitter 里发你主页链接时显示的预览卡片 -->
+<meta property="og:title" content="Yannian Niu">
+<meta property="og:description" content="PhD student in Computer Science and Engineering at the University of Connecticut.">
+<meta property="og:image" content="https://yannianniu.github.io/images/profile.png">
+<meta property="og:url" content="https://yannianniu.github.io/">
+<meta property="og:type" content="website">
+
+<style>
+/* ============================================================
+   颜色和字号都收在这里。想整体调风格，改这几个变量就够了，
+   不用去下面的规则里一条条找。
+   ============================================================ */
+:root {
+  --bg:        #ffffff;
+  --bg-soft:   #f7f8fa;   /* 卡片、代码块的浅底 */
+  --text:      #1f2328;   /* 正文 */
+  --text-dim:  #656d76;   /* 次要信息：单位、日期、venue */
+  --line:      #e4e7eb;   /* 分隔线、边框 */
+  --accent:    #1f6feb;   /* 链接和高亮 */
+  --accent-bg: #ddeaff;   /* 高亮的浅底 */
+  --maxw:      880px;     /* 正文最大宽度，再宽一行字就太长不好读 */
+}
+
+/* 跟随系统深色模式。不想要深色版就把整个 @media 块删掉。 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #0d1117;
+    --bg-soft:   #161b22;
+    --text:      #e6edf3;
+    --text-dim:  #9198a1;
+    --line:      #30363d;
+    --accent:    #6ea8ff;
+    --accent-bg: #1c2b45;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;   /* 点导航栏平滑滚动过去，不是瞬间跳 */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+               "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+/* ---------- 顶部导航栏 ---------- */
+/* position: sticky 是「一直贴在窗口顶上」的关键，滚动时不会跑掉 */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  height: 56px;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+nav .brand {
+  font-weight: 650;
+  color: var(--text);
+  font-size: 1.02rem;
+  white-space: nowrap;
+}
+
+nav .links {
+  display: flex;
+  gap: 22px;
+  margin-left: auto;
+  overflow-x: auto;          /* 手机上窄屏放不下时可以横向滑动 */
+  scrollbar-width: none;
+  /* flex 子元素默认不肯缩到内容宽度以下。不写这行，手机上导航栏会把
+     整个页面撑宽，正文右边被切掉。 */
+  min-width: 0;
+}
+nav .links::-webkit-scrollbar { display: none; }
+
+nav .links a {
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  white-space: nowrap;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: color .15s;
+}
+nav .links a:hover { color: var(--text); text-decoration: none; }
+
+/* 滚到哪个板块，导航栏对应那一项就高亮（由页面底部的 JS 加上 .active） */
+nav .links a.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- 板块通用 ---------- */
+section {
+  padding: 46px 0 8px;
+  /* 锚点跳转时给顶部导航栏留出高度，否则标题会被导航栏盖住 */
+  scroll-margin-top: 56px;
+}
+
+h2 {
+  font-size: 1.35rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  padding-bottom: 10px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+
+p { margin-bottom: 14px; }
+
+.dim { color: var(--text-dim); }
+.small { font-size: 0.9rem; }
+
+/* ---------- About：左边照片，右边简介 ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+  align-items: start;
+  padding-top: 52px;
+}
+
+.card { text-align: center; }
+
+.card img.photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--line);
+}
+
+.card .name { font-size: 1.15rem; font-weight: 650; margin-top: 16px; }
+.card .role { font-size: 0.86rem; color: var(--text-dim); line-height: 1.45; margin-top: 4px; }
+
+.card .contact {
+  margin-top: 14px;
+  font-size: 0.86rem;
+  line-height: 1.9;
+  color: var(--text-dim);
+  word-break: break-word;
+}
+
+/* 头像下面那排链接 */
+.iconlinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.iconlinks a {
+  font-size: 0.82rem;
+  padding: 4px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text-dim);
+}
+.iconlinks a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+/* 研究兴趣的小标签 */
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.tag {
+  font-size: 0.84rem;
+  padding: 3px 11px;
+  border-radius: 6px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+}
+
+/* ---------- News：左边日期，右边内容 ---------- */
+/* max-height + overflow 让条目多了以后自己滚动，不会把页面撑得老长。
+   不想要内部滚动条就删掉这两行。 */
+.news {
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.news .item {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 16px;
+  padding: 9px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.95rem;
+}
+.news .item:last-child { border-bottom: none; }
+
+.news .date {
+  color: var(--text-dim);
+  font-size: 0.86rem;
+  font-variant-numeric: tabular-nums;
+  padding-top: 2px;
+}
+
+/* ---------- Publications ---------- */
+.pub {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.pub:last-child { border-bottom: none; }
+
+.pub .title { font-weight: 600; line-height: 1.45; }
+.pub .authors { font-size: 0.93rem; color: var(--text-dim); margin-top: 3px; }
+.pub .authors .me { color: var(--text); font-weight: 600; }  /* 自己的名字加粗 */
+.pub .venue { font-size: 0.9rem; margin-top: 3px; }
+.pub .venue em { color: var(--text); font-style: italic; }
+
+/* [PDF] [Code] 这些小按钮 */
+.pub .links { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 7px; }
+.pub .links a {
+  font-size: 0.8rem;
+  padding: 2px 9px;
+  border-radius: 5px;
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+.pub .links a:hover { text-decoration: none; opacity: .8; }
+
+/* 论文左边的 venue 徽章，例如 INFOCOM '26 */
+.badge {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  padding: 2px 8px;
+  border-radius: 5px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+/* ---------- Projects ---------- */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.proj {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px 18px;
+  background: var(--bg-soft);
+}
+.proj p { font-size: 0.92rem; color: var(--text-dim); margin: 6px 0 10px; }
+.proj .links { display: flex; gap: 12px; font-size: 0.85rem; }
+
+/* ---------- Teaching ---------- */
+.teach {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.95rem;
+}
+.teach:last-of-type { border-bottom: none; }
+.teach .when { color: var(--text-dim); font-size: 0.88rem; }
+
+/* ---------- 页脚 ---------- */
+footer {
+  margin-top: 60px;
+  padding: 26px 0 40px;
+  border-top: 1px solid var(--line);
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ---------- 手机屏幕 ---------- */
+@media (max-width: 700px) {
+  body { font-size: 15px; }
+  nav { gap: 16px; }
+  nav .links { gap: 16px; }
+  .hero {
+    grid-template-columns: 1fr;   /* 照片和简介改成上下排 */
+    gap: 24px;
+    text-align: left;
+  }
+  .news .item, .teach { grid-template-columns: 1fr; gap: 2px; }
+  .news { max-height: none; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     顶部导航栏。href="#xxx" 对应下面 <section id="xxx">，
+     两边必须一模一样，改一个就要改另一个。
+     ============================================================ -->
+<header>
+  <nav>
+    <a class="brand" href="#about">Yannian Niu</a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#projects">Projects</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- ========================= About ========================= -->
+  <section id="about" class="hero">
+
+    <div class="card">
+      <img class="photo" src="images/profile.png" alt="Yannian Niu">
+      <div class="name">Yannian Niu</div>
+      <div class="role">
+        Ph.D. Student<br>
+        Computer Science &amp; Engineering<br>
+        University of Connecticut
+      </div>
+
+      <!-- 链接排。没有的先注释掉，别留空链接（#）——点了没反应比没有更差。
+           CV：把 PDF 放到 files/cv.pdf，再取消下面那行的注释。 -->
+      <div class="iconlinks">
+        <a href="mailto:yannian.niu@uconn.edu">Email</a>
+        <!-- <a href="files/cv.pdf">CV</a> -->
+        <a href="https://github.com/YannianNiu">GitHub</a>
+        <!-- <a href="https://scholar.google.com/citations?user=【你的ID】">Scholar</a> -->
+        <!-- <a href="https://www.linkedin.com/in/【你的ID】">LinkedIn</a> -->
+      </div>
+    </div>
+
+    <div>
+      <h2 style="margin-top:0">About</h2>
+
+      <p>
+        I am a Ph.D. student in the Computer Science and Engineering department at the
+        <a href="https://uconn.edu/">University of Connecticut</a>, advised by
+        <a href="https://archer-w.github.io/">Dr. Minmei Wang</a>.
+        Before my Ph.D., I earned my M.S. in Software Engineering in 2023 and my B.S. in
+        Software Engineering in 2020, both at
+        <a href="https://www.ecnu.edu.cn/">East China Normal University (华东师范大学)</a>.
+      </p>
+
+      <p>
+        My research focuses on <strong>【一句话概括你的方向】</strong>.
+        【再写一到两句：你关心的具体问题是什么，用什么办法解决，为什么这事值得做。
+        写给隔壁方向的博士生看，别抄论文摘要。】
+      </p>
+
+      <h3 style="margin-top:22px">Research Interests</h3>
+      <div class="tags">
+        <span class="tag">【方向一】</span>
+        <span class="tag">【方向二】</span>
+        <span class="tag">【方向三】</span>
+      </div>
+
+      <h3 style="margin-top:22px">Education</h3>
+      <p class="small dim" style="margin-bottom:0">
+        Ph.D. in Computer Science &amp; Engineering, University of Connecticut, 2023 – present<br>
+        M.S. in Software Engineering, East China Normal University, 2023<br>
+        B.S. in Software Engineering, East China Normal University, 2020
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ========================= News =========================
+       加一条就复制一个 .item 块放到最上面（最新的在最前）。
+       日期格式统一用 2026.03，别一会儿中文一会儿英文。
+       ======================================================== -->
+  <section id="news">
+    <h2>News</h2>
+    <div class="news">
+
+      <div class="item">
+        <div class="date">2026.xx</div>
+        <div>论文《【标题】》被 <strong>【会议】</strong> 接收。</div>
+      </div>
+
+      <div class="item">
+        <div class="date">2026.xx</div>
+        <div>【其他动态：实习、获奖、开源发布、做 reviewer……】</div>
+      </div>
+
+      <div class="item">
+        <div class="date">2023.08</div>
+        <div>开始在 University of Connecticut 读博，导师 Dr. Minmei Wang。</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== Publications =====================
+       加一篇就复制一个 .pub 块。列表手动按时间倒序排（新的在上面）。
+       - .badge 是左上角的会议徽章
+       - <span class="me"> 把自己的名字加粗，方便别人一眼找到
+       - 没有的链接整个 <a> 删掉，不要留 href="#"
+       ======================================================== -->
+  <section id="publications">
+    <h2>Publications</h2>
+
+    <div class="pub">
+      <div class="badge">【会议缩写】 '26</div>
+      <div class="title">【论文标题】</div>
+      <div class="authors"><span class="me">Yannian Niu</span>, Co-Author A, Minmei Wang</div>
+      <div class="venue"><em>【会议或期刊全名，例如 IEEE INFOCOM】</em>, 2026</div>
+      <!-- PDF 放到 files/ 目录下，然后取消注释并改成真实文件名 -->
+      <div class="links">
+        <!-- <a href="files/【论文文件名】.pdf">PDF</a> -->
+        <a href="https://github.com/YannianNiu/xxx">Code</a>
+        <!-- <a href="https://doi.org/【DOI】">DOI</a> -->
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="badge">【会议缩写】 '25</div>
+      <div class="title">【论文标题】</div>
+      <div class="authors">Co-Author B, <span class="me">Yannian Niu</span>, Minmei Wang</div>
+      <div class="venue"><em>【会议或期刊全名】</em>, 2025</div>
+      <div class="links">
+        <!-- <a href="files/【论文文件名】.pdf">PDF</a> -->
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ======================= Projects =======================
+       复制一个 .proj 块加一个项目。有数字就写数字（star 数、用户量、
+       性能提升多少倍），比形容词有用得多。
+       ======================================================== -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+
+      <div class="proj">
+        <h3>【项目名称】</h3>
+        <p>【一到两句：这是什么、给谁用、解决了什么问题。技术栈写在这里。】</p>
+        <div class="links">
+          <a href="https://github.com/YannianNiu/xxx">GitHub</a>
+          <a href="#publications">Paper</a>
+        </div>
+      </div>
+
+      <div class="proj">
+        <h3>【项目名称】</h3>
+        <p>【一到两句说明。】</p>
+        <div class="links">
+          <a href="https://github.com/YannianNiu/xxx">GitHub</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================= Teaching ======================= -->
+  <section id="teaching">
+    <h2>Teaching</h2>
+
+    <div class="teach">
+      <div class="when">【2025 Fall】</div>
+      <div>
+        <strong>【课程编号 课程名】</strong><br>
+        <span class="small dim">Teaching Assistant, University of Connecticut</span>
+      </div>
+    </div>
+
+    <div class="teach">
+      <div class="when">【2024 Spring】</div>
+      <div>
+        <strong>【课程编号 课程名】</strong><br>
+        <span class="small dim">Teaching Assistant, University of Connecticut</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ======================== Contact ======================== -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p class="small">
+      <strong>Email:</strong> <a href="mailto:yannian.niu@uconn.edu">yannian.niu@uconn.edu</a><br>
+      <strong>Office:</strong> 【楼名 房间号】<br>
+      Department of Computer Science &amp; Engineering<br>
+      University of Connecticut, 371 Fairfield Way, Storrs, CT 06269
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    © <span id="year">2026</span> Yannian Niu · Last updated 2026.08
+  </div>
+</footer>
+
+<!-- ============================================================
+     两件事：页脚年份自动更新；滚到哪个板块就高亮导航栏对应那一项。
+     不用管这段，加内容不需要动它。
+     ============================================================ -->
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav .links a'));
+  var sections = links
+    .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+    .filter(Boolean);
+
+  function highlight() {
+    // 取「已经滚过导航栏、且离顶部最近」的那个板块
+    var current = sections[0];
+    sections.forEach(function (s) {
+      if (s.getBoundingClientRect().top <= 80) current = s;
+    });
+    // 滚到底部时强制高亮最后一项，否则最后那个短板块永远轮不到
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 4) {
+      current = sections[sections.length - 1];
+    }
+    links.forEach(function (a) {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current.id);
+    });
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { highlight(); ticking = false; });
+  }, { passive: true });
+
+  highlight();
+})();
+</script>
+
+</body>
+</html>
