@@ -338,8 +338,9 @@ footer {
       <a href="#about">About</a>
       <a href="#news">News</a>
       <a href="#publications">Publications</a>
-      <a href="#projects">Projects</a>
+      <a href="#research">Research</a>
       <a href="#teaching">Teaching</a>
+      <a href="#awards">Awards</a>
       <a href="#contact">Contact</a>
     </div>
   </nav>
@@ -363,7 +364,7 @@ footer {
            CV：把 PDF 放到 files/cv.pdf，再取消下面那行的注释。 -->
       <div class="iconlinks">
         <a href="mailto:yannian.niu@uconn.edu">Email</a>
-        <!-- <a href="files/cv.pdf">CV</a> -->
+        <a href="files/cv.pdf">CV</a>
         <a href="https://github.com/YannianNiu">GitHub</a>
         <!-- <a href="https://scholar.google.com/citations?user=【你的ID】">Scholar</a> -->
         <!-- <a href="https://www.linkedin.com/in/【你的ID】">LinkedIn</a> -->
@@ -377,29 +378,40 @@ footer {
         I am a Ph.D. student in the Computer Science and Engineering department at the
         <a href="https://uconn.edu/">University of Connecticut</a>, advised by
         <a href="https://archer-w.github.io/">Dr. Minmei Wang</a>.
-        Before my Ph.D., I earned my M.S. in Software Engineering in 2023 and my B.S. in
+        Before my Ph.D., I earned my M.S. in Software Engineering in 2023 and my B.Eng. in
         Software Engineering in 2020, both at
         <a href="https://www.ecnu.edu.cn/">East China Normal University (华东师范大学)</a>.
       </p>
 
       <p>
-        My research focuses on <strong>【一句话概括你的方向】</strong>.
-        【再写一到两句：你关心的具体问题是什么，用什么办法解决，为什么这事值得做。
-        写给隔壁方向的博士生看，别抄论文摘要。】
+        My research is on <strong>data structures and algorithms for networking and data
+        systems</strong>, in particular <em>exact</em> multi-set membership queries — given a key,
+        which of many sets does it belong to?
+      </p>
+
+      <p>
+        Approximate structures such as Bloom filters answer this cheaply but return false
+        positives, which a lot of real systems cannot tolerate. I build exact alternatives that
+        stay within the same throughput and memory budget, and then push them onto the hardware
+        that actually needs them: Intel Tofino programmable switches at line rate via P4, LSM-tree
+        compaction, DNS filtering. A related line of my work looks at consolidating co-existing
+        network functions so that several NFs can share one set of algorithms and one device.
       </p>
 
       <h3 style="margin-top:22px">Research Interests</h3>
       <div class="tags">
-        <span class="tag">【方向一】</span>
-        <span class="tag">【方向二】</span>
-        <span class="tag">【方向三】</span>
+        <span class="tag">Data Structures &amp; Algorithms</span>
+        <span class="tag">Set Membership Queries</span>
+        <span class="tag">Programmable Networks (P4)</span>
+        <span class="tag">Network Function Virtualization</span>
+        <span class="tag">Metadata Indexing</span>
       </div>
 
       <h3 style="margin-top:22px">Education</h3>
       <p class="small dim" style="margin-bottom:0">
         Ph.D. in Computer Science &amp; Engineering, University of Connecticut, 2023 – present<br>
-        M.S. in Software Engineering, East China Normal University, 2023<br>
-        B.S. in Software Engineering, East China Normal University, 2020
+        M.S. in Software Engineering, East China Normal University, 2020 – 2023<br>
+        B.Eng. in Software Engineering, East China Normal University, 2016 – 2020
       </p>
     </div>
 
@@ -414,18 +426,32 @@ footer {
     <div class="news">
 
       <div class="item">
-        <div class="date">2026.xx</div>
-        <div>论文《【标题】》被 <strong>【会议】</strong> 接收。</div>
+        <div class="date">2026.06</div>
+        <div>Started a new project bringing STEM<sup>2</sup> to <strong>Intel Tofino</strong>
+          programmable switches: exact per-packet membership queries at line rate in P4.</div>
       </div>
 
       <div class="item">
-        <div class="date">2026.xx</div>
-        <div>【其他动态：实习、获奖、开源发布、做 reviewer……】</div>
+        <div class="date">2026</div>
+        <div>“STEM<sup>2</sup>: A Fast and Space-efficient Data Structure for Exact Multi-Set
+          Membership Queries” was accepted to <strong>VLDB 2026</strong>.</div>
+      </div>
+
+      <div class="item">
+        <div class="date">2026.01</div>
+        <div>New work on exact multi-set <em>multi</em>-membership indexing for metadata
+          filtering (LSM-tree compaction, DNS filtering).</div>
+      </div>
+
+      <div class="item">
+        <div class="date">2025</div>
+        <div>“MagicBox: Towards Consolidated Algorithms of Co-existing Network Functions on
+          Heterogeneous Devices” was accepted to <strong>IEEE NFV-SDN 2025</strong>.</div>
       </div>
 
       <div class="item">
         <div class="date">2023.08</div>
-        <div>开始在 University of Connecticut 读博，导师 Dr. Minmei Wang。</div>
+        <div>Started my Ph.D. at the University of Connecticut, advised by Dr. Minmei Wang.</div>
       </div>
 
     </div>
@@ -441,52 +467,106 @@ footer {
     <h2>Publications</h2>
 
     <div class="pub">
-      <div class="badge">【会议缩写】 '26</div>
-      <div class="title">【论文标题】</div>
-      <div class="authors"><span class="me">Yannian Niu</span>, Co-Author A, Minmei Wang</div>
-      <div class="venue"><em>【会议或期刊全名，例如 IEEE INFOCOM】</em>, 2026</div>
+      <div class="badge">SIGMOD '27 · under review</div>
+      <div class="title">STEM<sup>3</sup>: From Set Intersection to Point Query for Scalable Metadata Filtering</div>
+      <div class="authors"><span class="me">Yannian Niu</span>, Minmei Wang</div>
+      <div class="venue"><em>ACM International Conference on Management of Data (SIGMOD)</em>, 2027. Under review.</div>
+    </div>
+
+    <div class="pub">
+      <div class="badge">IEEE ToN · under review</div>
+      <div class="title">MagicBox: Towards Consolidated Algorithms of Co-existing Network Functions on Heterogeneous Devices</div>
+      <div class="authors"><span class="me">Yannian Niu</span>, Minmei Wang</div>
+      <div class="venue"><em>IEEE Transactions on Networking</em> (extended version). Under review.</div>
+    </div>
+
+    <div class="pub">
+      <div class="badge">VLDB '26</div>
+      <div class="title">STEM<sup>2</sup>: A Fast and Space-efficient Data Structure for Exact Multi-Set Membership Queries</div>
+      <div class="authors"><span class="me">Yannian Niu</span>, S. Han, Minmei Wang</div>
+      <div class="venue">52nd <em>International Conference on Very Large Data Bases (VLDB)</em>, 2026</div>
       <!-- PDF 放到 files/ 目录下，然后取消注释并改成真实文件名 -->
       <div class="links">
-        <!-- <a href="files/【论文文件名】.pdf">PDF</a> -->
-        <a href="https://github.com/YannianNiu/xxx">Code</a>
+        <!-- <a href="files/stem2.pdf">PDF</a> -->
+        <!-- <a href="https://github.com/YannianNiu/xxx">Code</a> -->
         <!-- <a href="https://doi.org/【DOI】">DOI</a> -->
       </div>
     </div>
 
     <div class="pub">
-      <div class="badge">【会议缩写】 '25</div>
-      <div class="title">【论文标题】</div>
-      <div class="authors">Co-Author B, <span class="me">Yannian Niu</span>, Minmei Wang</div>
-      <div class="venue"><em>【会议或期刊全名】</em>, 2025</div>
+      <div class="badge">NFV-SDN '25</div>
+      <div class="title">MagicBox: Towards Consolidated Algorithms of Co-existing Network Functions on Heterogeneous Devices</div>
+      <div class="authors"><span class="me">Yannian Niu</span>, Minmei Wang</div>
+      <div class="venue"><em>IEEE Conference on Network Function Virtualization and Software-Defined Networking (NFV-SDN)</em>, 2025</div>
       <div class="links">
-        <!-- <a href="files/【论文文件名】.pdf">PDF</a> -->
+        <!-- <a href="files/magicbox.pdf">PDF</a> -->
       </div>
     </div>
 
   </section>
 
-  <!-- ======================= Projects =======================
+  <!-- ======================= Research =======================
        复制一个 .proj 块加一个项目。有数字就写数字（star 数、用户量、
        性能提升多少倍），比形容词有用得多。
        ======================================================== -->
-  <section id="projects">
-    <h2>Projects</h2>
+  <section id="research">
+    <h2>Research</h2>
     <div class="projects">
 
       <div class="proj">
-        <h3>【项目名称】</h3>
-        <p>【一到两句：这是什么、给谁用、解决了什么问题。技术栈写在这里。】</p>
+        <h3>Line-Rate Exact Membership Query on Programmable Switches</h3>
+        <div class="small dim">June 2026 – present</div>
+        <p>
+          Deploying the STEM<sup>2</sup> multi-set membership algorithm onto programmable
+          switches in P4, so that exact per-packet flow classification and multi-tenant ACL
+          enforcement run at line rate (Tbps) — workloads CPU-based solutions cannot sustain at
+          data-center traffic volumes. Full control/data-plane co-design on Intel Tofino:
+          pipeline stage budgeting, stateful ALU register packing, and atomic control-plane
+          updates for zero-downtime rule changes.
+        </p>
+      </div>
+
+      <div class="proj">
+        <h3>Metadata Indexing via Multi-Set Multi-Membership Queries</h3>
+        <div class="small dim">January 2026 – present</div>
+        <p>
+          An exact multi-set multi-membership index built on a ternary-separator partition tree
+          with an overlap-aware construction algorithm. It reaches significantly higher throughput
+          at lower memory cost than prior work on metadata-indexing workloads such as LSM-tree
+          compaction and DNS filtering.
+        </p>
         <div class="links">
-          <a href="https://github.com/YannianNiu/xxx">GitHub</a>
-          <a href="#publications">Paper</a>
+          <a href="#publications">Paper (STEM<sup>3</sup>)</a>
         </div>
       </div>
 
       <div class="proj">
-        <h3>【项目名称】</h3>
-        <p>【一到两句说明。】</p>
+        <h3>STEM<sup>2</sup>: Exact Multi-Set Membership Queries</h3>
+        <div class="small dim">February 2025 – December 2025</div>
+        <p>
+          A fast, space-efficient data structure for exact multi-set membership queries that
+          outperforms related work in query throughput, memory cost, and accuracy. It serves as a
+          primitive across networking and databases: traffic management and routing, distributed
+          storage and caching, privacy-preserving systems, and data mining tasks such as customer
+          purchase analysis.
+        </p>
         <div class="links">
-          <a href="https://github.com/YannianNiu/xxx">GitHub</a>
+          <a href="#publications">Paper (VLDB '26)</a>
+        </div>
+      </div>
+
+      <div class="proj">
+        <h3>MagicBox: Consolidating Co-existing Network Functions</h3>
+        <div class="small dim">September 2023 – January 2025</div>
+        <p>
+          An end-to-end system that takes the desired network functions, device specifications,
+          and user-defined objectives as input, then automatically generates consolidated
+          algorithms plus a deployment plan. A curated NF library makes it usable by non-experts;
+          experiments show it produces resource-efficient algorithms for co-existing NFs on
+          heterogeneous devices.
+        </p>
+        <div class="links">
+          <a href="#publications">Paper (NFV-SDN '25)</a>
         </div>
       </div>
 
@@ -498,19 +578,51 @@ footer {
     <h2>Teaching</h2>
 
     <div class="teach">
-      <div class="when">【2025 Fall】</div>
+      <div class="when">2026 Spring</div>
       <div>
-        <strong>【课程编号 课程名】</strong><br>
+        <strong>CSE 2050: Data Structures and Object-Oriented Design</strong><br>
         <span class="small dim">Teaching Assistant, University of Connecticut</span>
       </div>
     </div>
 
     <div class="teach">
-      <div class="when">【2024 Spring】</div>
+      <div class="when">2025 Spring</div>
       <div>
-        <strong>【课程编号 课程名】</strong><br>
+        <strong>CSE 2050: Data Structures and Object-Oriented Design</strong><br>
         <span class="small dim">Teaching Assistant, University of Connecticut</span>
       </div>
+    </div>
+
+    <div class="teach">
+      <div class="when">2024 Fall</div>
+      <div>
+        <strong>CSE 2050: Data Structures and Object-Oriented Design</strong><br>
+        <span class="small dim">Teaching Assistant, University of Connecticut</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ======================== Awards ========================= -->
+  <section id="awards">
+    <h2>Awards</h2>
+
+    <div class="teach">
+      <div class="when">November 2022</div>
+      <div><strong>Outstanding Student Award</strong><br>
+        <span class="small dim">East China Normal University</span></div>
+    </div>
+
+    <div class="teach">
+      <div class="when">November 2021</div>
+      <div><strong>Outstanding Student Award</strong><br>
+        <span class="small dim">East China Normal University</span></div>
+    </div>
+
+    <div class="teach">
+      <div class="when">November 2020</div>
+      <div><strong>Second Prize, 17th China Graduate Mathematical Contest in Modeling</strong><br>
+        <span class="small dim">National</span></div>
     </div>
 
   </section>
@@ -520,7 +632,7 @@ footer {
     <h2>Contact</h2>
     <p class="small">
       <strong>Email:</strong> <a href="mailto:yannian.niu@uconn.edu">yannian.niu@uconn.edu</a><br>
-      <strong>Office:</strong> 【楼名 房间号】<br>
+      <strong>Phone:</strong> <a href="tel:+19592104268">(+1) 959-210-4268</a><br>
       Department of Computer Science &amp; Engineering<br>
       University of Connecticut, 371 Fairfield Way, Storrs, CT 06269
     </p>
