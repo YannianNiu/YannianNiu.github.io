@@ -90,7 +90,7 @@ warn("板块 #{orphan.join(', ')} 没出现在导航栏里") unless orphan.empty
 # ---------- 3. 本地文件路径 ----------
 puts "\n本地文件"
 refs = (clean.scan(/(?:src|href)="([^"]+)"/).flatten)
-       .reject { |r| r =~ %r{\A(https?:|mailto:|#|//|data:)} }
+       .reject { |r| r =~ %r{\A(https?:|mailto:|tel:|#|//|data:)} }
        .uniq
 
 if refs.empty?

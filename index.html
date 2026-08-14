@@ -218,8 +218,8 @@ p { margin-bottom: 14px; }
 
 .news .item {
   display: grid;
-  grid-template-columns: 96px 1fr;
-  gap: 16px;
+  grid-template-columns: 96px 22px 1fr;   /* 日期 / 图标 / 内容 */
+  gap: 10px;
   padding: 9px 0;
   border-bottom: 1px dashed var(--line);
   font-size: 0.95rem;
@@ -257,18 +257,58 @@ p { margin-bottom: 14px; }
 }
 .pub .links a:hover { text-decoration: none; opacity: .8; }
 
-/* 论文左边的 venue 徽章，例如 INFOCOM '26 */
+/* 论文左边的 venue 徽章，例如 VLDB '26。
+   颜色由每个徽章自己的 --c 决定，下面按会议各给一个色；
+   没写 --c 的就退回灰色。加新会议就照着加一行 .badge.xxx { --c: ...; } */
+.badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 7px; }
+
 .badge {
   display: inline-block;
   font-size: 0.74rem;
-  font-weight: 600;
+  font-weight: 650;
   letter-spacing: .02em;
-  padding: 2px 8px;
+  padding: 2px 9px;
   border-radius: 5px;
-  background: var(--bg-soft);
-  border: 1px solid var(--line);
-  color: var(--text-dim);
-  margin-bottom: 6px;
+  color: var(--c, var(--text-dim));
+  background: color-mix(in srgb, var(--c, var(--text-dim)) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c, var(--text-dim)) 34%, transparent);
+}
+
+.badge.vldb   { --c: #7048e8; }   /* 紫 */
+.badge.sigmod { --c: #d9730d; }   /* 橙 */
+.badge.nfvsdn { --c: #0f8a7e; }   /* 青 */
+.badge.ton    { --c: #1f6feb; }   /* 蓝 */
+.badge.review { --c: #8b939c; font-weight: 600; }  /* under review：中性灰 */
+
+/* 深色底下上面那几个颜色偏暗，各提亮一档 */
+@media (prefers-color-scheme: dark) {
+  .badge.vldb   { --c: #a98bff; }
+  .badge.sigmod { --c: #f0a35e; }
+  .badge.nfvsdn { --c: #3fc9b8; }
+  .badge.ton    { --c: #6ea8ff; }
+  .badge.review { --c: #9198a1; }
+}
+
+/* ---------- 带 emoji 的列表：Education / News / Awards ---------- */
+/* 图标固定一列宽，文字才能对齐，不会被 emoji 宽度不一顶得参差不齐 */
+.iconlist { list-style: none; }
+
+.iconlist strong { color: var(--text); font-weight: 600; }
+
+.iconlist li {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 8px;
+  align-items: baseline;
+  padding: 3px 0;
+}
+
+.iconlist .ico,
+.news .ico {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  /* emoji 用系统彩色字体，别被上面正文的字体栈影响 */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
 }
 
 /* ---------- Projects ---------- */
@@ -319,7 +359,10 @@ footer {
     gap: 24px;
     text-align: left;
   }
-  .news .item, .teach { grid-template-columns: 1fr; gap: 2px; }
+  .teach { grid-template-columns: 1fr; gap: 2px; }
+  /* 手机上日期单独占一行，图标和文字还是并排，不然图标会自己占一行 */
+  .news .item { grid-template-columns: 22px 1fr; gap: 2px 8px; }
+  .news .date { grid-column: 1 / -1; }
   .news { max-height: none; }
 }
 </style>
@@ -363,16 +406,16 @@ footer {
       <!-- 链接排。没有的先注释掉，别留空链接（#）——点了没反应比没有更差。
            CV：把 PDF 放到 files/cv.pdf，再取消下面那行的注释。 -->
       <div class="iconlinks">
-        <a href="mailto:yannian.niu@uconn.edu">Email</a>
-        <a href="files/cv.pdf">CV</a>
-        <a href="https://github.com/YannianNiu">GitHub</a>
+        <a href="mailto:yannian.niu@uconn.edu">📧 Email</a>
+        <a href="files/cv.pdf">📄 CV</a>
+        <a href="https://github.com/YannianNiu">💻 GitHub</a>
         <!-- <a href="https://scholar.google.com/citations?user=【你的ID】">Scholar</a> -->
         <!-- <a href="https://www.linkedin.com/in/【你的ID】">LinkedIn</a> -->
       </div>
     </div>
 
     <div>
-      <h2 style="margin-top:0">About</h2>
+      <h2 style="margin-top:0">👋 About</h2>
 
       <p>
         I am a Ph.D. student in the Computer Science and Engineering department at the
@@ -398,7 +441,7 @@ footer {
         network functions so that several NFs can share one set of algorithms and one device.
       </p>
 
-      <h3 style="margin-top:22px">Research Interests</h3>
+      <h3 style="margin-top:22px">💡 Research Interests</h3>
       <div class="tags">
         <span class="tag">Data Structures &amp; Algorithms</span>
         <span class="tag">Set Membership Queries</span>
@@ -407,12 +450,24 @@ footer {
         <span class="tag">Metadata Indexing</span>
       </div>
 
-      <h3 style="margin-top:22px">Education</h3>
-      <p class="small dim" style="margin-bottom:0">
-        Ph.D. in Computer Science &amp; Engineering, University of Connecticut, 2023 – present<br>
-        M.S. in Software Engineering, East China Normal University, 2020 – 2023<br>
-        B.Eng. in Software Engineering, East China Normal University, 2016 – 2020
-      </p>
+      <h3 style="margin-top:22px">🎓 Education</h3>
+      <ul class="iconlist small dim">
+        <li>
+          <span class="ico">🎓</span>
+          <span><strong>Ph.D. in Computer Science &amp; Engineering</strong>,
+            University of Connecticut, 2023 – present</span>
+        </li>
+        <li>
+          <span class="ico">🎓</span>
+          <span><strong>M.S. in Software Engineering</strong>,
+            East China Normal University, 2020 – 2023</span>
+        </li>
+        <li>
+          <span class="ico">🎓</span>
+          <span><strong>B.Eng. in Software Engineering</strong>,
+            East China Normal University, 2016 – 2020</span>
+        </li>
+      </ul>
     </div>
 
   </section>
@@ -422,35 +477,40 @@ footer {
        日期格式统一用 2026.03，别一会儿中文一会儿英文。
        ======================================================== -->
   <section id="news">
-    <h2>News</h2>
+    <h2>📰 News</h2>
     <div class="news">
 
       <div class="item">
         <div class="date">2026.06</div>
+        <div class="ico">🔬</div>
         <div>Started a new project bringing STEM<sup>2</sup> to <strong>Intel Tofino</strong>
           programmable switches: exact per-packet membership queries at line rate in P4.</div>
       </div>
 
       <div class="item">
         <div class="date">2026</div>
+        <div class="ico">📄</div>
         <div>“STEM<sup>2</sup>: A Fast and Space-efficient Data Structure for Exact Multi-Set
           Membership Queries” was accepted to <strong>VLDB 2026</strong>.</div>
       </div>
 
       <div class="item">
         <div class="date">2026.01</div>
+        <div class="ico">🔬</div>
         <div>New work on exact multi-set <em>multi</em>-membership indexing for metadata
           filtering (LSM-tree compaction, DNS filtering).</div>
       </div>
 
       <div class="item">
         <div class="date">2025</div>
+        <div class="ico">📄</div>
         <div>“MagicBox: Towards Consolidated Algorithms of Co-existing Network Functions on
           Heterogeneous Devices” was accepted to <strong>IEEE NFV-SDN 2025</strong>.</div>
       </div>
 
       <div class="item">
         <div class="date">2023.08</div>
+        <div class="ico">🎓</div>
         <div>Started my Ph.D. at the University of Connecticut, advised by Dr. Minmei Wang.</div>
       </div>
 
@@ -464,24 +524,30 @@ footer {
        - 没有的链接整个 <a> 删掉，不要留 href="#"
        ======================================================== -->
   <section id="publications">
-    <h2>Publications</h2>
+    <h2>📄 Publications</h2>
 
     <div class="pub">
-      <div class="badge">SIGMOD '27 · under review</div>
+      <div class="badges">
+        <span class="badge sigmod">SIGMOD '27</span>
+        <span class="badge review">Under review</span>
+      </div>
       <div class="title">STEM<sup>3</sup>: From Set Intersection to Point Query for Scalable Metadata Filtering</div>
       <div class="authors"><span class="me">Yannian Niu</span>, Minmei Wang</div>
       <div class="venue"><em>ACM International Conference on Management of Data (SIGMOD)</em>, 2027. Under review.</div>
     </div>
 
     <div class="pub">
-      <div class="badge">IEEE ToN · under review</div>
+      <div class="badges">
+        <span class="badge ton">IEEE ToN</span>
+        <span class="badge review">Under review</span>
+      </div>
       <div class="title">MagicBox: Towards Consolidated Algorithms of Co-existing Network Functions on Heterogeneous Devices</div>
       <div class="authors"><span class="me">Yannian Niu</span>, Minmei Wang</div>
       <div class="venue"><em>IEEE Transactions on Networking</em> (extended version). Under review.</div>
     </div>
 
     <div class="pub">
-      <div class="badge">VLDB '26</div>
+      <div class="badges"><span class="badge vldb">VLDB '26</span></div>
       <div class="title">STEM<sup>2</sup>: A Fast and Space-efficient Data Structure for Exact Multi-Set Membership Queries</div>
       <div class="authors"><span class="me">Yannian Niu</span>, S. Han, Minmei Wang</div>
       <div class="venue">52nd <em>International Conference on Very Large Data Bases (VLDB)</em>, 2026</div>
@@ -494,7 +560,7 @@ footer {
     </div>
 
     <div class="pub">
-      <div class="badge">NFV-SDN '25</div>
+      <div class="badges"><span class="badge nfvsdn">NFV-SDN '25</span></div>
       <div class="title">MagicBox: Towards Consolidated Algorithms of Co-existing Network Functions on Heterogeneous Devices</div>
       <div class="authors"><span class="me">Yannian Niu</span>, Minmei Wang</div>
       <div class="venue"><em>IEEE Conference on Network Function Virtualization and Software-Defined Networking (NFV-SDN)</em>, 2025</div>
@@ -510,7 +576,7 @@ footer {
        性能提升多少倍），比形容词有用得多。
        ======================================================== -->
   <section id="research">
-    <h2>Research</h2>
+    <h2>🔬 Research</h2>
     <div class="projects">
 
       <div class="proj">
@@ -575,7 +641,7 @@ footer {
 
   <!-- ======================= Teaching ======================= -->
   <section id="teaching">
-    <h2>Teaching</h2>
+    <h2>📚 Teaching</h2>
 
     <div class="teach">
       <div class="when">2026 Spring</div>
@@ -605,23 +671,23 @@ footer {
 
   <!-- ======================== Awards ========================= -->
   <section id="awards">
-    <h2>Awards</h2>
+    <h2>🏆 Awards</h2>
 
     <div class="teach">
       <div class="when">November 2022</div>
-      <div><strong>Outstanding Student Award</strong><br>
+      <div><strong>🏆 Outstanding Student Award</strong><br>
         <span class="small dim">East China Normal University</span></div>
     </div>
 
     <div class="teach">
       <div class="when">November 2021</div>
-      <div><strong>Outstanding Student Award</strong><br>
+      <div><strong>🏆 Outstanding Student Award</strong><br>
         <span class="small dim">East China Normal University</span></div>
     </div>
 
     <div class="teach">
       <div class="when">November 2020</div>
-      <div><strong>Second Prize, 17th China Graduate Mathematical Contest in Modeling</strong><br>
+      <div><strong>🥈 Second Prize, 17th China Graduate Mathematical Contest in Modeling</strong><br>
         <span class="small dim">National</span></div>
     </div>
 
@@ -629,13 +695,22 @@ footer {
 
   <!-- ======================== Contact ======================== -->
   <section id="contact">
-    <h2>Contact</h2>
-    <p class="small">
-      <strong>Email:</strong> <a href="mailto:yannian.niu@uconn.edu">yannian.niu@uconn.edu</a><br>
-      <strong>Phone:</strong> <a href="tel:+19592104268">(+1) 959-210-4268</a><br>
-      Department of Computer Science &amp; Engineering<br>
-      University of Connecticut, 371 Fairfield Way, Storrs, CT 06269
-    </p>
+    <h2>📬 Contact</h2>
+    <ul class="iconlist small">
+      <li>
+        <span class="ico">📧</span>
+        <span><a href="mailto:yannian.niu@uconn.edu">yannian.niu@uconn.edu</a></span>
+      </li>
+      <li>
+        <span class="ico">📞</span>
+        <span><a href="tel:+19592104268">(+1) 959-210-4268</a></span>
+      </li>
+      <li>
+        <span class="ico">🏢</span>
+        <span class="dim">Department of Computer Science &amp; Engineering,<br>
+          University of Connecticut, 371 Fairfield Way, Storrs, CT 06269</span>
+      </li>
+    </ul>
   </section>
 
 </main>
