@@ -27,7 +27,11 @@
   --line:      #e4e7eb;   /* 分隔线、边框 */
   --accent:    #1f6feb;   /* 链接和高亮 */
   --accent-bg: #ddeaff;   /* 高亮的浅底 */
-  --maxw:      880px;     /* 正文最大宽度，再宽一行字就太长不好读 */
+  /* 整站的内容宽度：导航、正文、页脚都按它对齐，改这一个值就够了。
+     880 是「一行 75~90 字符」的经典排版宽度，最好读；1080 稍宽一些，
+     大屏上留白没那么多。再往上加就不建议了 —— 1300 以上一行超过
+     140 个字符，眼睛从行尾跳回行首容易串行。 */
+  --maxw:      1080px;
 }
 
 /* 跟随系统深色模式。不想要深色版就把整个 @media 块删掉。 */
@@ -492,9 +496,7 @@ footer {
       <img class="photo" src="images/profile.JPG" alt="Yannian Niu">
       <div class="name">Yannian Niu</div>
       <div class="role">
-        Ph.D. Student<br>
-        Computer Science &amp; Engineering<br>
-        University of Connecticut
+        CS Ph.D. Candidate @ UConn
       </div>
 
       <!-- 链接排。没有的先注释掉，别留空链接（#）——点了没反应比没有更差。
@@ -652,13 +654,15 @@ footer {
 
     <h3 class="subhead">Under Review</h3>
 
+    <!-- 这篇在双盲送审期间不公开：标题和会议名都是审稿人能搜到的钩子。
+         它现在以不具名的形式写在下面的 Ongoing Projects 里。
+         接收之后把这一整块的注释去掉，并删掉 Ongoing 里对应那条。
     <div class="pub">
       <div class="badges"><span class="badge sigmod">SIGMOD '27</span></div>
       <div class="title">MIST: Scalable Metadata Indexing via Efficient and Exact Multi-Set Multi-Membership Queries</div>
-      <div class="authors"><span class="me">Yannian Niu</span>, Minmei Wang</div>
+      <div class="authors"><span class="me">Yannian Niu</span>, Zirong Gan, Shuyi Liao, Xinyue Zheng, Minmei Wang</div>
       <div class="venue"><em>ACM International Conference on Management of Data (SIGMOD)</em>, 2027</div>
       <div class="desc">
-        <!-- <div class="period">January 2026 – present</div> -->
         Given a key, return the exact set of containers holding it — the query underneath LSM-tree
         point lookups and DNS-based access control. MIST answers it by routing each query down a
         size-balanced partition tree of ternary set separators, reaching up to 156× the throughput
@@ -666,12 +670,13 @@ footer {
         exact inverted indexes, while staying exact.
       </div>
     </div>
+    -->
 
     <div class="pub">
       <div class="badges"><span class="badge ton">IEEE ToN</span></div>
       <div class="title">MagicBox: Towards Consolidated Algorithms of Co-existing Network Functions on Heterogeneous Devices</div>
       <div class="authors"><span class="me">Yannian Niu</span>, Minmei Wang</div>
-      <div class="venue"><em>IEEE Transactions on Networking</em> (extended version)</div>
+      <div class="venue"><em>IEEE Transactions on Networking</em></div>
       <div class="desc">
         Journal extension of the NFV-SDN '25 paper above.
       </div>
@@ -729,6 +734,21 @@ footer {
     <p class="small dim" style="margin-top:-8px">
       Work in progress. Manuscripts still under review are described without titles or venues.
     </p>
+
+    <div class="og">
+      <div class="og-head">
+        <span class="role lead">Lead</span>
+        <span class="when">Since January 2026</span>
+      </div>
+      <p>
+        Exact multi-set multi-membership indexing: given a key, return the exact set of containers
+        that hold it — the lookup underneath point queries in log-structured key-value stores and
+        policy checks in network access control. Existing designs force a choice between
+        materializing every key's full membership list and probing each set in turn; I am building
+        an index that avoids both, keeping the memory footprint of an approximate filter while
+        answering exactly.
+      </p>
+    </div>
 
     <div class="og">
       <div class="og-head">
@@ -818,17 +838,17 @@ footer {
     </div>
 
     <div class="teach">
-      <div class="when">2021 Fall</div>
+      <div class="when">2022 Fall</div>
       <div>
-        <strong>Advanced Mathematics</strong><br>
+        <strong>The Practice of Object-Oriented Programming JAVA</strong><br>
         <span class="small dim">Teaching Assistant, East China Normal University</span>
       </div>
     </div>
 
     <div class="teach">
-      <div class="when">2022 Fall</div>
+      <div class="when">2021 Fall</div>
       <div>
-        <strong>The Practice of Object-Oriented Programming JAVA</strong><br>
+        <strong>Advanced Mathematics</strong><br>
         <span class="small dim">Teaching Assistant, East China Normal University</span>
       </div>
     </div>
