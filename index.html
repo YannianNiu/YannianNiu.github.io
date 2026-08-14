@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Yannian Niu</title>
 <meta name="description" content="Yannian Niu — PhD student in Computer Science and Engineering at the University of Connecticut.">
-<link rel="icon" href="images/profile.png">
+<link rel="icon" href="images/profile.JPG">
 
 <!-- Open Graph：别人在微信/Slack/Twitter 里发你主页链接时显示的预览卡片 -->
 <meta property="og:title" content="Yannian Niu">
@@ -459,7 +459,7 @@ footer {
   <section id="about" class="hero">
 
     <div class="card">
-      <img class="photo" src="images/profile.png" alt="Yannian Niu">
+      <img class="photo" src="images/profile.JPG" alt="Yannian Niu">
       <div class="name">Yannian Niu</div>
       <div class="role">
         Ph.D. Student<br>
@@ -482,36 +482,23 @@ footer {
       <h2 style="margin-top:0">👋 About</h2>
 
       <p>
-        I am a Ph.D. student in the Computer Science and Engineering department at the
+        I am a 3rd-year Ph.D. student in the Computer Science and Engineering department at the
         <a href="https://uconn.edu/">University of Connecticut</a>, advised by
-        <a href="https://archer-w.github.io/">Dr. Minmei Wang</a>.
+        <a href="https://archer-w.github.io/">Dr. Minmei Wang</a>. My research lies at the 
+        intersection of Data Management, Networking, and Artificial Intelligence. 
         Before my Ph.D., I earned my M.S. in Software Engineering in 2023 and my B.Eng. in
         Software Engineering in 2020, both at
         <a href="https://www.ecnu.edu.cn/">East China Normal University (华东师范大学)</a>.
       </p>
 
-      <p>
-        My research is on <strong>data structures and algorithms for networking and data
-        systems</strong>, in particular <em>exact</em> multi-set membership queries — given a key,
-        which of many sets does it belong to?
-      </p>
-
-      <p>
-        Approximate structures such as Bloom filters answer this cheaply but return false
-        positives, which a lot of real systems cannot tolerate. I build exact alternatives that
-        stay within the same throughput and memory budget, and then push them onto the hardware
-        that actually needs them: Intel Tofino programmable switches at line rate via P4, LSM-tree
-        compaction, DNS filtering. A related line of my work looks at consolidating co-existing
-        network functions so that several NFs can share one set of algorithms and one device.
-      </p>
 
       <h3 style="margin-top:22px">💡 Research Interests</h3>
       <div class="tags">
+        <span class="tag">Data management</span>
+        <span class="tag">Artificial Intelligence (AI) for Networks</span>
         <span class="tag">Data Structures &amp; Algorithms</span>
-        <span class="tag">Set Membership Queries</span>
-        <span class="tag">Programmable Networks (P4)</span>
-        <span class="tag">Network Function Virtualization</span>
-        <span class="tag">Metadata Indexing</span>
+        <span class="tag">Software-Defined Networking (SDN)</span>
+        <span class="tag">AI Infrastructure</span>
       </div>
 
       <h3 style="margin-top:22px">🎓 Education</h3>
@@ -703,6 +690,22 @@ footer {
     <div class="og">
       <div class="og-head">
         <span class="role lead">Lead</span>
+        <span class="when">2026 – present</span>
+      </div>
+      <p>
+        Distributed KV cache retrieval for LLM serving. Once cached key-value blocks are spread
+        across many nodes, every incoming request first has to find <em>which</em> nodes hold the
+        blocks it can reuse — a lookup that sits on the critical path of each request, and one
+        where an approximate filter is expensive to be wrong about: a false hit costs a remote
+        fetch that returns nothing. I am adapting my exact multi-set multi-membership index to
+        answer that lookup directly, so the cache can grow across nodes without the retrieval step
+        becoming the bottleneck.
+      </p>
+    </div>
+
+    <div class="og">
+      <div class="og-head">
+        <span class="role lead">Lead</span>
         <span class="when">Since June 2026</span>
       </div>
       <p>
@@ -723,7 +726,7 @@ footer {
         How to evaluate LLM-generated programs for programmable data planes. Rather than scoring
         generated code against a reference implementation, we judge it by the packet-level
         behavior it actually produces once deployed, which is what correctness means for a network
-        function. Joint work led by a colleague in the group.
+        function. Joint work led by a co-worker in the group.
       </p>
     </div>
 
@@ -737,7 +740,7 @@ footer {
         whether a program satisfies a property, but someone still has to write those properties
         down; we are building a reusable, provenance-tracked knowledge base of correctness
         properties for common network functions so that users no longer carry that burden.
-        Joint work led by a colleague in the group.
+        Joint work led by a co-worker in the group.
       </p>
     </div>
 
