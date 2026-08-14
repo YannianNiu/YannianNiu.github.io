@@ -9,7 +9,7 @@
 
 ```
 index.html    整个网站：内容、样式、脚本都在这里
-images/       图片（profile.png 是首页头像）
+images/       图片（profile.JPG 是首页头像）
 files/        PDF：简历放 cv.pdf，论文也放这里
 .nojekyll     告诉 GitHub Pages 别拿 Jekyll 处理，直接按原样发布
 .tools/       推送前的检查脚本

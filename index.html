@@ -10,7 +10,7 @@
 <!-- Open Graph：别人在微信/Slack/Twitter 里发你主页链接时显示的预览卡片 -->
 <meta property="og:title" content="Yannian Niu">
 <meta property="og:description" content="PhD student in Computer Science and Engineering at the University of Connecticut.">
-<meta property="og:image" content="https://yannianniu.github.io/images/profile.png">
+<meta property="og:image" content="https://yannianniu.github.io/images/profile.JPG">
 <meta property="og:url" content="https://yannianniu.github.io/">
 <meta property="og:type" content="website">
 
@@ -194,6 +194,36 @@ p { margin-bottom: 14px; }
   color: var(--accent);
   border-color: var(--accent);
   text-decoration: none;
+}
+
+/* ---------- 求职提示框 ---------- */
+/* 用主题色的浅底 + 左边一条粗竖线。整页只有这一处用了强调色底，
+   所以它自然是视线第一个落到的地方，不需要再加大字号或者感叹号。 */
+.callout {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 11px;
+  margin: 4px 0 18px;
+  padding: 13px 16px;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  background: var(--accent-bg);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.callout strong { color: var(--text); font-weight: 650; }
+
+.callout a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.callout-ico {
+  font-size: 1rem;
+  line-height: 1.55;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
 }
 
 /* 研究兴趣的小标签 */
@@ -482,7 +512,7 @@ footer {
       <h2 style="margin-top:0">👋 About</h2>
 
       <p>
-        I am a 3rd-year Ph.D. student in the Computer Science and Engineering department at the
+        I am a 4th-year Ph.D. student in the Computer Science and Engineering department at the
         <a href="https://uconn.edu/">University of Connecticut</a>, advised by
         <a href="https://archer-w.github.io/">Dr. Minmei Wang</a>. My research lies at the 
         intersection of Data Management, Networking, and Artificial Intelligence. 
@@ -491,6 +521,18 @@ footer {
         <a href="https://www.ecnu.edu.cn/">East China Normal University (华东师范大学)</a>.
       </p>
 
+      <!-- 求职提示。找到工作之后把整块删掉 —— 留着过期信息比没有更糟。
+           毕业时间和岗位方向改成你确定的说法。 -->
+      <div class="callout">
+        <span class="callout-ico">💼</span>
+        <div>
+          <strong>I am on the job market.</strong>
+          I expect to graduate in 2027 and am looking for full-time positions in data management,
+          networking, and AI infrastructure. Feel free to
+          <a href="mailto:yannian.niu@uconn.edu">reach out</a> — my
+          <a href="files/cv.pdf">CV</a> has the details.
+        </div>
+      </div>
 
       <h3 style="margin-top:22px">💡 Research Interests</h3>
       <div class="tags">
@@ -612,15 +654,16 @@ footer {
 
     <div class="pub">
       <div class="badges"><span class="badge sigmod">SIGMOD '27</span></div>
-      <div class="title">STEM<sup>3</sup>: From Set Intersection to Point Query for Scalable Metadata Filtering</div>
+      <div class="title">MIST: Scalable Metadata Indexing via Efficient and Exact Multi-Set Multi-Membership Queries</div>
       <div class="authors"><span class="me">Yannian Niu</span>, Minmei Wang</div>
       <div class="venue"><em>ACM International Conference on Management of Data (SIGMOD)</em>, 2027</div>
       <div class="desc">
         <!-- <div class="period">January 2026 – present</div> -->
-        An exact multi-set multi-membership index built on a novel ternary-separator partition
-        tree with an overlap-aware construction algorithm. It reaches significantly higher
-        throughput at lower memory cost than prior work on metadata-indexing workloads such as
-        LSM-tree compaction and DNS filtering.
+        Given a key, return the exact set of containers holding it — the query underneath LSM-tree
+        point lookups and DNS-based access control. MIST answers it by routing each query down a
+        size-balanced partition tree of ternary set separators, reaching up to 156× the throughput
+        of per-container approximate filters at a smaller footprint, and 363× less memory than
+        exact inverted indexes, while staying exact.
       </div>
     </div>
 
@@ -771,6 +814,22 @@ footer {
       <div>
         <strong>CSE 2050: Data Structures and Object-Oriented Design</strong><br>
         <span class="small dim">Teaching Assistant, University of Connecticut</span>
+      </div>
+    </div>
+
+    <div class="teach">
+      <div class="when">2021 Fall</div>
+      <div>
+        <strong>Advanced Mathematics</strong><br>
+        <span class="small dim">Teaching Assistant, East China Normal University</span>
+      </div>
+    </div>
+
+    <div class="teach">
+      <div class="when">2022 Fall</div>
+      <div>
+        <strong>The Practice of Object-Oriented Programming JAVA</strong><br>
+        <span class="small dim">Teaching Assistant, East China Normal University</span>
       </div>
     </div>
 
