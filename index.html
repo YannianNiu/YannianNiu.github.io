@@ -355,6 +355,42 @@ p { margin-bottom: 14px; }
   font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
 }
 
+/* ---------- Ongoing Projects ---------- */
+.og {
+  padding: 15px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.og:last-of-type { border-bottom: none; }
+
+.og-head { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; }
+
+.og .when {
+  font-size: 0.84rem;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.og p { font-size: 0.95rem; color: var(--text-dim); margin: 0; }
+
+/* lead / contributor 的小标。用法和上面的 venue 徽章一样，靠 --c 决定颜色 */
+.role {
+  font-size: 0.74rem;
+  font-weight: 650;
+  letter-spacing: .02em;
+  padding: 2px 9px;
+  border-radius: 5px;
+  color: var(--c);
+  background: color-mix(in srgb, var(--c) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c) 34%, transparent);
+}
+.role.lead    { --c: #1f6feb; }
+.role.contrib { --c: #6b7684; }
+
+@media (prefers-color-scheme: dark) {
+  .role.lead    { --c: #6ea8ff; }
+  .role.contrib { --c: #9198a1; }
+}
+
 /* ---------- Teaching ---------- */
 .teach {
   display: grid;
@@ -409,6 +445,7 @@ footer {
       <a href="#about">About</a>
       <a href="#news">News</a>
       <a href="#publications">Publications</a>
+      <a href="#ongoing">Ongoing</a>
       <a href="#teaching">Teaching</a>
       <a href="#awards">Awards</a>
       <a href="#contact">Contact</a>
@@ -555,14 +592,7 @@ footer {
         promising primitive across networking and databases: traffic management and routing,
         distributed storage and caching, security and privacy-preserving systems, and data mining
         tasks such as customer purchase analysis.
-        <!-- <div class="followup">
-          <strong>Ongoing (since June 2026):</strong> deploying STEM<sup>2</sup> onto Intel Tofino
-          programmable switches in P4, so that exact per-packet flow classification and
-          multi-tenant ACL enforcement run at line rate (Tbps) — workloads CPU-based solutions
-          cannot sustain at data-center traffic volumes. The control/data-plane co-design covers
-          pipeline stage budgeting, stateful ALU register packing, and atomic control-plane
-          updates for zero-downtime rule changes.
-        </div> -->
+        <!-- 后续的交换机部署工作移到了下面的 Ongoing Projects 板块 -->
       </div>
       <!-- PDF 放到 files/ 目录下，然后取消注释并改成真实文件名 -->
       <div class="links">
@@ -623,7 +653,7 @@ footer {
     <div class="pub">
       <div class="badges"><span class="badge smc">SMC '23</span></div>
       <div class="title">QueryEdge: Real-Time Multi-Video Query in Edge-Cloud Collaborative System</div>
-      <div class="authors">Jihua Zhong, <span class="me">Yannian Niu</span>, Minmei Wang</div>
+      <div class="authors">Jihua Zhong, <span class="me">Yannian Niu</span>, Minghua Zhu</div>
       <div class="venue"><em>IEEE International Conference on Systems, Man, and Cybernetics (SMC)</em>, 2023</div>
       <div class="desc">
         A real-time query system for multiple video streams, built on an edge-cloud collaboration
@@ -656,6 +686,61 @@ footer {
         traffic pattern changes abruptly.
       </div>
     </div>
+  </section>
+
+  <!-- =================== Ongoing Projects ===================
+       在投的稿子写在这里：只讲方向和你做了什么，不写论文标题、
+       不写投的会议、不写系统名字 —— 双盲送审期间这些都是搜索钩子。
+       接收之后再把条目挪到 Publications 里去。
+       复制一个 .og 块加一条。role 只有两种：lead / contrib。
+       ======================================================== -->
+  <section id="ongoing">
+    <h2>🔬 Ongoing Projects</h2>
+    <p class="small dim" style="margin-top:-8px">
+      Work in progress. Manuscripts still under review are described without titles or venues.
+    </p>
+
+    <div class="og">
+      <div class="og-head">
+        <span class="role lead">Lead</span>
+        <span class="when">Since June 2026</span>
+      </div>
+      <p>
+        Bringing exact multi-set membership queries onto programmable switches, so that
+        per-packet flow classification and multi-tenant ACL enforcement run at line rate (Tbps) —
+        workloads CPU-based solutions cannot sustain at data-center traffic volumes. The work is
+        a full control/data-plane co-design on Intel Tofino: pipeline stage budgeting, stateful
+        ALU register packing, and atomic control-plane updates for zero-downtime rule changes.
+      </p>
+    </div>
+
+    <div class="og">
+      <div class="og-head">
+        <span class="role contrib">Contributor</span>
+        <span class="when">2026 – present</span>
+      </div>
+      <p>
+        How to evaluate LLM-generated programs for programmable data planes. Rather than scoring
+        generated code against a reference implementation, we judge it by the packet-level
+        behavior it actually produces once deployed, which is what correctness means for a network
+        function. Joint work led by a colleague in the group.
+      </p>
+    </div>
+
+    <div class="og">
+      <div class="og-head">
+        <span class="role contrib">Contributor</span>
+        <span class="when">2026 – present</span>
+      </div>
+      <p>
+        Semantic validation of data-plane programs. Testing and verification tools can check
+        whether a program satisfies a property, but someone still has to write those properties
+        down; we are building a reusable, provenance-tracked knowledge base of correctness
+        properties for common network functions so that users no longer carry that burden.
+        Joint work led by a colleague in the group.
+      </p>
+    </div>
+
   </section>
 
   <!-- ======================= Teaching ======================= -->
