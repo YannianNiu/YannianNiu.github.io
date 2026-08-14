@@ -234,6 +234,18 @@ p { margin-bottom: 14px; }
 }
 
 /* ---------- Publications ---------- */
+/* Accepted / Under Review 两组的小标题。做成全大写的字号很小的标签，
+   不跟上面的 h2 抢，也不会被当成第二个板块标题。 */
+.subhead {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 30px 0 0;
+}
+.subhead:first-of-type { margin-top: 0; }
+
 .pub {
   padding: 16px 0;
   border-bottom: 1px solid var(--line);
@@ -245,6 +257,25 @@ p { margin-bottom: 14px; }
 .pub .authors .me { color: var(--text); font-weight: 600; }  /* 自己的名字加粗 */
 .pub .venue { font-size: 0.9rem; margin-top: 3px; }
 .pub .venue em { color: var(--text); font-style: italic; }
+
+/* 论文下面那段项目说明。左边一条竖线，和标题、作者拉开层次 */
+.pub .desc {
+  margin-top: 9px;
+  padding-left: 13px;
+  border-left: 2px solid var(--line);
+  font-size: 0.92rem;
+  color: var(--text-dim);
+}
+
+.pub .desc .period {
+  font-size: 0.84rem;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 2px;
+}
+
+/* 论文发表之后的后续工作，缩在同一段里再降一级 */
+.pub .desc .followup { margin-top: 8px; }
+.pub .desc .followup strong { color: var(--text); font-weight: 600; }
 
 /* [PDF] [Code] 这些小按钮 */
 .pub .links { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 7px; }
@@ -278,7 +309,6 @@ p { margin-bottom: 14px; }
 .badge.sigmod { --c: #d9730d; }   /* 橙 */
 .badge.nfvsdn { --c: #0f8a7e; }   /* 青 */
 .badge.ton    { --c: #1f6feb; }   /* 蓝 */
-.badge.review { --c: #8b939c; font-weight: 600; }  /* under review：中性灰 */
 
 /* 深色底下上面那几个颜色偏暗，各提亮一档 */
 @media (prefers-color-scheme: dark) {
@@ -286,7 +316,6 @@ p { margin-bottom: 14px; }
   .badge.sigmod { --c: #f0a35e; }
   .badge.nfvsdn { --c: #3fc9b8; }
   .badge.ton    { --c: #6ea8ff; }
-  .badge.review { --c: #9198a1; }
 }
 
 /* ---------- 带 emoji 的列表：Education / News / Awards ---------- */
@@ -310,22 +339,6 @@ p { margin-bottom: 14px; }
   /* emoji 用系统彩色字体，别被上面正文的字体栈影响 */
   font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
 }
-
-/* ---------- Projects ---------- */
-.projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
-}
-
-.proj {
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 16px 18px;
-  background: var(--bg-soft);
-}
-.proj p { font-size: 0.92rem; color: var(--text-dim); margin: 6px 0 10px; }
-.proj .links { display: flex; gap: 12px; font-size: 0.85rem; }
 
 /* ---------- Teaching ---------- */
 .teach {
@@ -381,7 +394,6 @@ footer {
       <a href="#about">About</a>
       <a href="#news">News</a>
       <a href="#publications">Publications</a>
-      <a href="#research">Research</a>
       <a href="#teaching">Teaching</a>
       <a href="#awards">Awards</a>
       <a href="#contact">Contact</a>
@@ -526,31 +538,29 @@ footer {
   <section id="publications">
     <h2>📄 Publications</h2>
 
-    <div class="pub">
-      <div class="badges">
-        <span class="badge sigmod">SIGMOD '27</span>
-        <span class="badge review">Under review</span>
-      </div>
-      <div class="title">STEM<sup>3</sup>: From Set Intersection to Point Query for Scalable Metadata Filtering</div>
-      <div class="authors"><span class="me">Yannian Niu</span>, Minmei Wang</div>
-      <div class="venue"><em>ACM International Conference on Management of Data (SIGMOD)</em>, 2027. Under review.</div>
-    </div>
-
-    <div class="pub">
-      <div class="badges">
-        <span class="badge ton">IEEE ToN</span>
-        <span class="badge review">Under review</span>
-      </div>
-      <div class="title">MagicBox: Towards Consolidated Algorithms of Co-existing Network Functions on Heterogeneous Devices</div>
-      <div class="authors"><span class="me">Yannian Niu</span>, Minmei Wang</div>
-      <div class="venue"><em>IEEE Transactions on Networking</em> (extended version). Under review.</div>
-    </div>
+    <h3 class="subhead">Accepted</h3>
 
     <div class="pub">
       <div class="badges"><span class="badge vldb">VLDB '26</span></div>
       <div class="title">STEM<sup>2</sup>: A Fast and Space-efficient Data Structure for Exact Multi-Set Membership Queries</div>
       <div class="authors"><span class="me">Yannian Niu</span>, S. Han, Minmei Wang</div>
       <div class="venue">52nd <em>International Conference on Very Large Data Bases (VLDB)</em>, 2026</div>
+      <div class="desc">
+        <div class="period">February 2025 – December 2025</div>
+        A fast, space-efficient data structure for exact multi-set membership queries that
+        outperforms related work in query throughput, memory cost, and accuracy. It is a
+        promising primitive across networking and databases: traffic management and routing,
+        distributed storage and caching, security and privacy-preserving systems, and data mining
+        tasks such as customer purchase analysis.
+        <div class="followup">
+          <strong>Ongoing (since June 2026):</strong> deploying STEM<sup>2</sup> onto Intel Tofino
+          programmable switches in P4, so that exact per-packet flow classification and
+          multi-tenant ACL enforcement run at line rate (Tbps) — workloads CPU-based solutions
+          cannot sustain at data-center traffic volumes. The control/data-plane co-design covers
+          pipeline stage budgeting, stateful ALU register packing, and atomic control-plane
+          updates for zero-downtime rule changes.
+        </div>
+      </div>
       <!-- PDF 放到 files/ 目录下，然后取消注释并改成真实文件名 -->
       <div class="links">
         <!-- <a href="files/stem2.pdf">PDF</a> -->
@@ -564,78 +574,43 @@ footer {
       <div class="title">MagicBox: Towards Consolidated Algorithms of Co-existing Network Functions on Heterogeneous Devices</div>
       <div class="authors"><span class="me">Yannian Niu</span>, Minmei Wang</div>
       <div class="venue"><em>IEEE Conference on Network Function Virtualization and Software-Defined Networking (NFV-SDN)</em>, 2025</div>
+      <div class="desc">
+        <div class="period">September 2023 – January 2025</div>
+        An end-to-end system that takes the desired network functions, device specifications, and
+        user-defined objectives as input, then automatically generates consolidated algorithms
+        together with a deployment plan. A curated NF library makes it accessible to non-experts;
+        experiments show it produces resource-efficient algorithms for co-existing NFs on
+        heterogeneous devices.
+      </div>
       <div class="links">
         <!-- <a href="files/magicbox.pdf">PDF</a> -->
       </div>
     </div>
 
-  </section>
+    <h3 class="subhead">Under Review</h3>
 
-  <!-- ======================= Research =======================
-       复制一个 .proj 块加一个项目。有数字就写数字（star 数、用户量、
-       性能提升多少倍），比形容词有用得多。
-       ======================================================== -->
-  <section id="research">
-    <h2>🔬 Research</h2>
-    <div class="projects">
-
-      <div class="proj">
-        <h3>Line-Rate Exact Membership Query on Programmable Switches</h3>
-        <div class="small dim">June 2026 – present</div>
-        <p>
-          Deploying the STEM<sup>2</sup> multi-set membership algorithm onto programmable
-          switches in P4, so that exact per-packet flow classification and multi-tenant ACL
-          enforcement run at line rate (Tbps) — workloads CPU-based solutions cannot sustain at
-          data-center traffic volumes. Full control/data-plane co-design on Intel Tofino:
-          pipeline stage budgeting, stateful ALU register packing, and atomic control-plane
-          updates for zero-downtime rule changes.
-        </p>
+    <div class="pub">
+      <div class="badges"><span class="badge sigmod">SIGMOD '27</span></div>
+      <div class="title">STEM<sup>3</sup>: From Set Intersection to Point Query for Scalable Metadata Filtering</div>
+      <div class="authors"><span class="me">Yannian Niu</span>, Minmei Wang</div>
+      <div class="venue"><em>ACM International Conference on Management of Data (SIGMOD)</em>, 2027</div>
+      <div class="desc">
+        <div class="period">January 2026 – present</div>
+        An exact multi-set multi-membership index built on a novel ternary-separator partition
+        tree with an overlap-aware construction algorithm. It reaches significantly higher
+        throughput at lower memory cost than prior work on metadata-indexing workloads such as
+        LSM-tree compaction and DNS filtering.
       </div>
+    </div>
 
-      <div class="proj">
-        <h3>Metadata Indexing via Multi-Set Multi-Membership Queries</h3>
-        <div class="small dim">January 2026 – present</div>
-        <p>
-          An exact multi-set multi-membership index built on a ternary-separator partition tree
-          with an overlap-aware construction algorithm. It reaches significantly higher throughput
-          at lower memory cost than prior work on metadata-indexing workloads such as LSM-tree
-          compaction and DNS filtering.
-        </p>
-        <div class="links">
-          <a href="#publications">Paper (STEM<sup>3</sup>)</a>
-        </div>
+    <div class="pub">
+      <div class="badges"><span class="badge ton">IEEE ToN</span></div>
+      <div class="title">MagicBox: Towards Consolidated Algorithms of Co-existing Network Functions on Heterogeneous Devices</div>
+      <div class="authors"><span class="me">Yannian Niu</span>, Minmei Wang</div>
+      <div class="venue"><em>IEEE Transactions on Networking</em> (extended version)</div>
+      <div class="desc">
+        Journal extension of the NFV-SDN '25 paper above.
       </div>
-
-      <div class="proj">
-        <h3>STEM<sup>2</sup>: Exact Multi-Set Membership Queries</h3>
-        <div class="small dim">February 2025 – December 2025</div>
-        <p>
-          A fast, space-efficient data structure for exact multi-set membership queries that
-          outperforms related work in query throughput, memory cost, and accuracy. It serves as a
-          primitive across networking and databases: traffic management and routing, distributed
-          storage and caching, privacy-preserving systems, and data mining tasks such as customer
-          purchase analysis.
-        </p>
-        <div class="links">
-          <a href="#publications">Paper (VLDB '26)</a>
-        </div>
-      </div>
-
-      <div class="proj">
-        <h3>MagicBox: Consolidating Co-existing Network Functions</h3>
-        <div class="small dim">September 2023 – January 2025</div>
-        <p>
-          An end-to-end system that takes the desired network functions, device specifications,
-          and user-defined objectives as input, then automatically generates consolidated
-          algorithms plus a deployment plan. A curated NF library makes it usable by non-experts;
-          experiments show it produces resource-efficient algorithms for co-existing NFs on
-          heterogeneous devices.
-        </p>
-        <div class="links">
-          <a href="#publications">Paper (NFV-SDN '25)</a>
-        </div>
-      </div>
-
     </div>
   </section>
 
