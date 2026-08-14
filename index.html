@@ -246,6 +246,17 @@ p { margin-bottom: 14px; }
 }
 .subhead:first-of-type { margin-top: 0; }
 
+/* 分组标题后面跟的说明，例如「M.S. at ECNU」。不大写、不加粗，
+   跟前面的标签区分开 */
+.subhead .note {
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+  font-size: 0.86rem;
+  opacity: .85;
+}
+.subhead .note::before { content: "· "; }
+
 .pub {
   padding: 16px 0;
   border-bottom: 1px solid var(--line);
@@ -309,6 +320,8 @@ p { margin-bottom: 14px; }
 .badge.sigmod { --c: #d9730d; }   /* 橙 */
 .badge.nfvsdn { --c: #0f8a7e; }   /* 青 */
 .badge.ton    { --c: #1f6feb; }   /* 蓝 */
+.badge.smc    { --c: #a8437a; }   /* 玫红 */
+.badge.apnoms { --c: #5b6f8c; }   /* 灰蓝 */
 
 /* 深色底下上面那几个颜色偏暗，各提亮一档 */
 @media (prefers-color-scheme: dark) {
@@ -316,6 +329,8 @@ p { margin-bottom: 14px; }
   .badge.sigmod { --c: #f0a35e; }
   .badge.nfvsdn { --c: #3fc9b8; }
   .badge.ton    { --c: #6ea8ff; }
+  .badge.smc    { --c: #e58bbb; }
+  .badge.apnoms { --c: #9fb3cc; }
 }
 
 /* ---------- 带 emoji 的列表：Education / News / Awards ---------- */
@@ -492,29 +507,17 @@ footer {
     <h2>📰 News</h2>
     <div class="news">
 
-      <div class="item">
-        <div class="date">2026.06</div>
-        <div class="ico">🔬</div>
-        <div>Started a new project bringing STEM<sup>2</sup> to <strong>Intel Tofino</strong>
-          programmable switches: exact per-packet membership queries at line rate in P4.</div>
-      </div>
 
       <div class="item">
-        <div class="date">2026</div>
+        <div class="date">2026.07</div>
         <div class="ico">📄</div>
         <div>“STEM<sup>2</sup>: A Fast and Space-efficient Data Structure for Exact Multi-Set
           Membership Queries” was accepted to <strong>VLDB 2026</strong>.</div>
       </div>
 
-      <div class="item">
-        <div class="date">2026.01</div>
-        <div class="ico">🔬</div>
-        <div>New work on exact multi-set <em>multi</em>-membership indexing for metadata
-          filtering (LSM-tree compaction, DNS filtering).</div>
-      </div>
 
       <div class="item">
-        <div class="date">2025</div>
+        <div class="date">2025.11</div>
         <div class="ico">📄</div>
         <div>“MagicBox: Towards Consolidated Algorithms of Co-existing Network Functions on
           Heterogeneous Devices” was accepted to <strong>IEEE NFV-SDN 2025</strong>.</div>
@@ -543,23 +546,23 @@ footer {
     <div class="pub">
       <div class="badges"><span class="badge vldb">VLDB '26</span></div>
       <div class="title">STEM<sup>2</sup>: A Fast and Space-efficient Data Structure for Exact Multi-Set Membership Queries</div>
-      <div class="authors"><span class="me">Yannian Niu</span>, S. Han, Minmei Wang</div>
+      <div class="authors"><span class="me">Yannian Niu</span>, Song Han, Minmei Wang</div>
       <div class="venue">52nd <em>International Conference on Very Large Data Bases (VLDB)</em>, 2026</div>
       <div class="desc">
-        <div class="period">February 2025 – December 2025</div>
+        <!-- <div class="period">February 2025 – December 2025</div> -->
         A fast, space-efficient data structure for exact multi-set membership queries that
         outperforms related work in query throughput, memory cost, and accuracy. It is a
         promising primitive across networking and databases: traffic management and routing,
         distributed storage and caching, security and privacy-preserving systems, and data mining
         tasks such as customer purchase analysis.
-        <div class="followup">
+        <!-- <div class="followup">
           <strong>Ongoing (since June 2026):</strong> deploying STEM<sup>2</sup> onto Intel Tofino
           programmable switches in P4, so that exact per-packet flow classification and
           multi-tenant ACL enforcement run at line rate (Tbps) — workloads CPU-based solutions
           cannot sustain at data-center traffic volumes. The control/data-plane co-design covers
           pipeline stage budgeting, stateful ALU register packing, and atomic control-plane
           updates for zero-downtime rule changes.
-        </div>
+        </div> -->
       </div>
       <!-- PDF 放到 files/ 目录下，然后取消注释并改成真实文件名 -->
       <div class="links">
@@ -569,13 +572,14 @@ footer {
       </div>
     </div>
 
+
     <div class="pub">
       <div class="badges"><span class="badge nfvsdn">NFV-SDN '25</span></div>
       <div class="title">MagicBox: Towards Consolidated Algorithms of Co-existing Network Functions on Heterogeneous Devices</div>
       <div class="authors"><span class="me">Yannian Niu</span>, Minmei Wang</div>
       <div class="venue"><em>IEEE Conference on Network Function Virtualization and Software-Defined Networking (NFV-SDN)</em>, 2025</div>
       <div class="desc">
-        <div class="period">September 2023 – January 2025</div>
+        <!-- <div class="period">September 2023 – January 2025</div> -->
         An end-to-end system that takes the desired network functions, device specifications, and
         user-defined objectives as input, then automatically generates consolidated algorithms
         together with a deployment plan. A curated NF library makes it accessible to non-experts;
@@ -595,7 +599,7 @@ footer {
       <div class="authors"><span class="me">Yannian Niu</span>, Minmei Wang</div>
       <div class="venue"><em>ACM International Conference on Management of Data (SIGMOD)</em>, 2027</div>
       <div class="desc">
-        <div class="period">January 2026 – present</div>
+        <!-- <div class="period">January 2026 – present</div> -->
         An exact multi-set multi-membership index built on a novel ternary-separator partition
         tree with an overlap-aware construction algorithm. It reaches significantly higher
         throughput at lower memory cost than prior work on metadata-indexing workloads such as
@@ -610,6 +614,46 @@ footer {
       <div class="venue"><em>IEEE Transactions on Networking</em> (extended version)</div>
       <div class="desc">
         Journal extension of the NFV-SDN '25 paper above.
+      </div>
+    </div>
+
+    <h3 class="subhead">Earlier Work
+      <span class="note">M.S. at East China Normal University</span></h3>
+
+    <div class="pub">
+      <div class="badges"><span class="badge smc">SMC '23</span></div>
+      <div class="title">QueryEdge: Real-Time Multi-Video Query in Edge-Cloud Collaborative System</div>
+      <div class="authors">Jihua Zhong, <span class="me">Yannian Niu</span>, Minmei Wang</div>
+      <div class="venue"><em>IEEE International Conference on Systems, Man, and Cybernetics (SMC)</em>, 2023</div>
+      <div class="desc">
+        A real-time query system for multiple video streams, built on an edge-cloud collaboration
+        framework that splits the work between the two so target queries stay accurate without
+        paying the latency of sending everything to the cloud.
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="badges"><span class="badge smc">SMC '22</span></div>
+      <div class="title">Throughput-Efficient Communication Device Driver for IoT Gateways</div>
+      <div class="authors"><span class="me">Yannian Niu</span>, Minghua Zhu</div>
+      <div class="venue"><em>IEEE International Conference on Systems, Man, and Cybernetics (SMC)</em>, 2022</div>
+      <div class="desc">
+        A user-space driver for IoT gateways. Moving packet forwarding out of the kernel and into
+        user space bypasses the kernel stack and shortens the delivery path, raising throughput on
+        the same hardware.
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="badges"><span class="badge apnoms">APNOMS '22</span></div>
+      <div class="title">Assembler: A Throughput-Efficient Module for Network Driver of Edge Computing Gateways</div>
+      <div class="authors"><span class="me">Yannian Niu</span>, Minghua Zhu</div>
+      <div class="venue">23rd <em>Asia-Pacific Network Operations and Management Symposium (APNOMS)</em>, 2022</div>
+      <div class="desc">
+        A module inside the gateway's network driver for small-packet-intensive traffic: it
+        assembles small incoming packets into larger ones before transmission, and an adaptive
+        assembly-size algorithm keeps data throughput and packet throughput in balance when the
+        traffic pattern changes abruptly.
       </div>
     </div>
   </section>
