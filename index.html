@@ -425,7 +425,14 @@ p { margin-bottom: 14px; }
   .role.contrib { --c: #9198a1; }
 }
 
-/* ---------- Teaching ---------- */
+/* ---------- Teaching / Experience ---------- */
+/* 经历条目下面那段说明，比单位名再低一级 */
+.teach .what {
+  font-size: 0.93rem;
+  color: var(--text-dim);
+  margin: 7px 0 0;
+}
+
 .teach {
   display: grid;
   grid-template-columns: 150px 1fr;
@@ -480,6 +487,7 @@ footer {
       <a href="#news">News</a>
       <a href="#publications">Publications</a>
       <a href="#ongoing">Ongoing</a>
+      <a href="#experience">Experience</a>
       <a href="#teaching">Teaching</a>
       <a href="#awards">Awards</a>
       <a href="#contact">Contact</a>
@@ -805,6 +813,32 @@ footer {
         properties for common network functions so that users no longer carry that burden.
         Joint work led by a co-worker in the group.
       </p>
+    </div>
+
+  </section>
+
+  <!-- ====================== Experience ======================
+       实习 / 工作经历。以后有博士期间的实习，复制一个 .teach 块加在
+       最上面（新的在前）。
+       ======================================================== -->
+  <section id="experience">
+    <h2>💼 Experience</h2>
+
+    <div class="teach">
+      <div class="when">2021.09 – 2022.09</div>
+      <div>
+        <strong>Research Intern</strong><br>
+        <span class="small dim">Shanghai Institute of Microsystem and Information Technology,
+          Chinese Academy of Sciences · Shanghai, China</span>
+        <p class="what">
+          Worked on intelligent edge computing gateways, on both halves of the path a packet
+          takes through one: raising forwarding throughput inside the gateway's network driver —
+          a user-space data path, and adaptive aggregation of small packets — and, above the
+          driver, an edge–cloud collaborative system for real-time queries over multiple video
+          streams. The work led to the three papers listed under
+          <a href="#publications">Earlier Work</a> above.
+        </p>
+      </div>
     </div>
 
   </section>
