@@ -749,12 +749,12 @@ footer {
         <span class="when">Since January 2026</span>
       </div>
       <p>
-        Exact multi-set multi-membership indexing: given a key, return the exact set of containers
-        that hold it — the lookup underneath point queries in log-structured key-value stores and
-        policy checks in network access control. Existing designs force a choice between
-        materializing every key's full membership list and probing each set in turn; I am building
-        an index that avoids both, keeping the memory footprint of an approximate filter while
-        answering exactly.
+        Exact Multi-Set Multi-Membership Query Solution for Metadata Indexing. Designed an exact 
+        multi-set multi-membership index that returns all containers containing a queried key, 
+        supporting point queries in log-structured key-value stores and policy checks in network 
+        access control. The index avoids both materializing each key's full membership list and 
+        probing every set, while providing exact answers with a memory footprint comparable to 
+        that of an approximate filter.
       </p>
     </div>
 
@@ -764,13 +764,12 @@ footer {
         <span class="when">Since July2026</span>
       </div>
       <p>
-        Distributed KV cache retrieval for LLM serving. Once cached key-value blocks are spread
-        across many nodes, every incoming request first has to find <em>which</em> nodes hold the
-        blocks it can reuse — a lookup that sits on the critical path of each request, and one
-        where an approximate filter is expensive to be wrong about: a false hit costs a remote
-        fetch that returns nothing. I am adapting my exact multi-set multi-membership index to
-        answer that lookup directly, so the cache can grow across nodes without the retrieval step
-        becoming the bottleneck.
+        Distributed KV Cache Retrieval for LLM Serving. Adapting our proposed exact multi-set 
+        multi-membership indexing solution to enable an LLM serving system to efficiently identify 
+        which distributed nodes hold the cached key-value blocks reusable by each request. Because 
+        this lookup lies on the critical path of every request, false hits from an approximate 
+        filter are particularly costly, as each triggers an unnecessary remote fetch that returns 
+        no reusable data.
       </p>
     </div>
 
@@ -780,11 +779,12 @@ footer {
         <span class="when">Since July 2026</span>
       </div>
       <p>
-        Bringing exact multi-set membership queries onto programmable switches, so that
-        per-packet flow classification and multi-tenant ACL enforcement run at line rate (Tbps) —
-        workloads CPU-based solutions cannot sustain at data-center traffic volumes. The work is
-        a full control/data-plane co-design on Intel Tofino: pipeline stage budgeting, stateful
-        ALU register packing, and atomic control-plane updates for zero-downtime rule changes.
+        Line-Rate Exact Membership Queries on Programmable Switches. Developing a P4 implementation 
+        of our proposed exact multi-set membership solution for programmable switches, enabling 
+        per-packet flow classification and multi-tenant ACL enforcement at Tbps line rates beyond 
+        what CPU-based solutions can sustain. The control/data-plane co-design on Intel Tofino addresses 
+        pipeline stage budgeting, stateful ALU register packing, and atomic control-plane updates 
+        for zero-downtime rule changes.
       </p>
     </div>
 
@@ -794,10 +794,10 @@ footer {
         <span class="when">Since June 2026</span>
       </div>
       <p>
-        How to evaluate LLM-generated programs for programmable data planes. Rather than scoring
-        generated code against a reference implementation, we judge it by the packet-level
-        behavior it actually produces once deployed, which is what correctness means for a network
-        function. Joint work led by a co-worker in the group.
+        Benchmarking LLM-Based P4 Programming. Built a scalable, adaptive benchmark for evaluating 
+        LLM-generated P4 programs, with network-function tasks derived from authoritative sources 
+        and packet-level oracles that verify both data-plane code and control-plane configurations 
+        on software and hardware switches.
       </p>
     </div>
 
@@ -807,11 +807,9 @@ footer {
         <span class="when">Since March 2026</span>
       </div>
       <p>
-        Semantic validation of data-plane programs. Testing and verification tools can check
-        whether a program satisfies a property, but someone still has to write those properties
-        down; we are building a reusable, provenance-tracked knowledge base of correctness
-        properties for common network functions so that users no longer carry that burden.
-        Joint work led by a co-worker in the group.
+        Intent-Driven Semantic Validation of P4 Programs. Designed an auditable, LLM-assisted 
+        property knowledge base that identifies requirements applicable to a P4 program from 
+        authoritative sources and turns them into executable tests for detecting semantic bugs.
       </p>
     </div>
 
