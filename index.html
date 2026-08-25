@@ -356,6 +356,7 @@ p { margin-bottom: 14px; }
 .badge.ton    { --c: #1f6feb; }   /* 蓝 */
 .badge.smc    { --c: #a8437a; }   /* 玫红 */
 .badge.apnoms { --c: #5b6f8c; }   /* 灰蓝 */
+.badge.icnp   { --c: #2f9e44; }   /* 绿 */
 
 /* 深色底下上面那几个颜色偏暗，各提亮一档 */
 @media (prefers-color-scheme: dark) {
@@ -365,6 +366,7 @@ p { margin-bottom: 14px; }
   .badge.ton    { --c: #6ea8ff; }
   .badge.smc    { --c: #e58bbb; }
   .badge.apnoms { --c: #9fb3cc; }
+  .badge.icnp   { --c: #5ec269; }
 }
 
 /* ---------- 带 emoji 的列表：Education / News / Awards ---------- */
@@ -585,6 +587,14 @@ footer {
 
 
       <div class="item">
+        <div class="date">2026.08</div>
+        <div class="ico">📄</div>
+        <div>“A Property Knowledge Base for Intent-Driven Validation of Programmable Data
+          Planes” was accepted as a poster at <strong>IEEE ICNP 2026</strong>.</div>
+      </div>
+
+
+      <div class="item">
         <div class="date">2026.07</div>
         <div class="ico">📄</div>
         <div>“STEM<sup>2</sup>: A Fast and Space-efficient Data Structure for Exact Multi-Set
@@ -618,6 +628,22 @@ footer {
     <h2>📄 Publications</h2>
 
     <h3 class="subhead">Accepted</h3>
+
+    <div class="pub">
+      <div class="badges"><span class="badge icnp">ICNP '26 Poster</span></div>
+      <div class="title">A Property Knowledge Base for Intent-Driven Validation of Programmable Data Planes</div>
+      <div class="authors">Shuyi Liao, Zirong Gan, <span class="me">Yannian Niu</span>, Xinyue Zheng, Tingting Yu, Minmei Wang</div>
+      <div class="venue">34th <em>IEEE International Conference on Network Protocols (ICNP)</em>, 2026 — Poster</div>
+      <div class="desc">
+        A knowledge base of validation properties for programmable data planes, letting operators
+        state what a P4 program should satisfy as intent and have the corresponding properties
+        assembled and checked automatically.
+      </div>
+      <div class="links">
+        <!-- <a href="files/icnp26-poster.pdf">PDF</a> -->
+      </div>
+    </div>
+
 
     <div class="pub">
       <div class="badges"><span class="badge vldb">VLDB '26</span></div>
