@@ -357,6 +357,7 @@ p { margin-bottom: 14px; }
 .badge.smc    { --c: #a8437a; }   /* 玫红 */
 .badge.apnoms { --c: #5b6f8c; }   /* 灰蓝 */
 .badge.icnp   { --c: #2f9e44; }   /* 绿 */
+.badge.sigmetrics { --c: #c92a2a; }   /* 红 */
 
 /* 深色底下上面那几个颜色偏暗，各提亮一档 */
 @media (prefers-color-scheme: dark) {
@@ -367,6 +368,7 @@ p { margin-bottom: 14px; }
   .badge.smc    { --c: #e58bbb; }
   .badge.apnoms { --c: #9fb3cc; }
   .badge.icnp   { --c: #5ec269; }
+  .badge.sigmetrics { --c: #ff8787; }
 }
 
 /* ---------- 带 emoji 的列表：Education / News / Awards ---------- */
@@ -655,6 +657,22 @@ footer {
     </div>
 
     <div class="pub">
+      <div class="badges"><span class="badge sigmetrics">SIGMETRICS '27</span></div>
+      <div class="title">P4Bench: A Scalable and Adaptive Oracle-Backed Benchmark for P4 Programming with Large Language Models</div>
+      <div class="authors">Zirong Gan, Shuyi Liao, <span class="me">Yannian Niu</span>, Xinyue Zheng, Tingting Yu, Minmei Wang</div>
+      <div class="venue"><em>ACM SIGMETRICS International Conference on Measurement and Modeling of Computer Systems</em>, 2027</div>
+      <div class="desc">
+        A scalable, adaptive benchmark for evaluating LLM-generated P4 programs, with
+        network-function tasks derived from authoritative sources and packet-level oracles that
+        verify both data-plane code and control-plane configurations on software and hardware
+        switches.
+      </div>
+      <div class="links">
+        <!-- <a href="files/p4bench.pdf">PDF</a> -->
+      </div>
+    </div>
+
+    <div class="pub">
       <div class="badges"><span class="badge icnp">ICNP '26 Poster</span></div>
       <div class="title">A Property Knowledge Base for Intent-Driven Validation of Programmable Data Planes</div>
       <div class="authors">Shuyi Liao, Zirong Gan, <span class="me">Yannian Niu</span>, Xinyue Zheng, Tingting Yu, Minmei Wang</div>
@@ -692,23 +710,7 @@ footer {
 
     <h3 class="subhead">Under Review</h3>
 
-    <!-- 这篇在双盲送审期间不公开：标题和会议名都是审稿人能搜到的钩子。
-         它现在以不具名的形式写在下面的 Ongoing Projects 里。
-         接收之后把这一整块的注释去掉，并删掉 Ongoing 里对应那条。
-    <div class="pub">
-      <div class="badges"><span class="badge sigmod">SIGMOD '27</span></div>
-      <div class="title">MIST: Scalable Metadata Indexing via Efficient and Exact Multi-Set Multi-Membership Queries</div>
-      <div class="authors"><span class="me">Yannian Niu</span>, Zirong Gan, Shuyi Liao, Xinyue Zheng, Minmei Wang</div>
-      <div class="venue"><em>ACM International Conference on Management of Data (SIGMOD)</em>, 2027</div>
-      <div class="desc">
-        Given a key, return the exact set of containers holding it — the query underneath LSM-tree
-        point lookups and DNS-based access control. MIST answers it by routing each query down a
-        size-balanced partition tree of ternary set separators, reaching up to 156× the throughput
-        of per-container approximate filters at a smaller footprint, and 363× less memory than
-        exact inverted indexes, while staying exact.
-      </div>
-    </div>
-    -->
+    <!-- 审稿中的一篇暂不列出，内容见本机 paper_on_hold.txt -->
 
     <div class="pub">
       <div class="badges"><span class="badge ton">IEEE ToN</span></div>
@@ -791,7 +793,7 @@ footer {
     <div class="og">
       <div class="og-head">
         <span class="role lead">Lead</span>
-        <span class="when">Since July2026</span>
+        <span class="when">Since July 2026</span>
       </div>
       <p>
         Distributed KV Cache Retrieval for LLM Serving. Adapting our proposed exact multi-set 
@@ -815,19 +817,6 @@ footer {
         what CPU-based solutions can sustain. The control/data-plane co-design on Intel Tofino addresses 
         pipeline stage budgeting, stateful ALU register packing, and atomic control-plane updates 
         for zero-downtime rule changes.
-      </p>
-    </div>
-
-    <div class="og">
-      <div class="og-head">
-        <span class="role contrib">Contributor</span>
-        <span class="when">Since June 2026</span>
-      </div>
-      <p>
-        Benchmarking LLM-Based P4 Programming. Built a scalable, adaptive benchmark for evaluating 
-        LLM-generated P4 programs, with network-function tasks derived from authoritative sources 
-        and packet-level oracles that verify both data-plane code and control-plane configurations 
-        on software and hardware switches.
       </p>
     </div>
 
